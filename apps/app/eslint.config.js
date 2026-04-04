@@ -1,0 +1,1 @@
+export {reactConifg} from '@repo/eslint-config';

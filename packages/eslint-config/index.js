@@ -1,0 +1,23 @@
+import js from '@eslint/js'
+import tseslint from 'typescript-eslint'
+import reactConifg from './react'
+export default tseslint.config(
+  { ignores: ['dist', 'node_modules'] },
+  {
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommended
+    ],
+    files: ['**/*.{ts,tsx,js,jsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      sourceType: 'module',
+     
+    },
+    rules: {
+      '@typescript-eslint/no-non-null-assertion': 'off'
+    }
+  }
+)
+
+export {reactConifg}

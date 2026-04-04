@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif !important;
+}
+
+* {
+  font-family: 'Inter', sans-serif !important;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f100;
+  border-radius: 6px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #EAEBED;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #EAEBED;
+}
+
+/* flex */
+.dflex {
+  display: flex !important;
+}
+
+.aCenter {
+  align-items: center !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.fw-500 {
+  font-weight: 500 !important;
+}
+
+.fw-600 {
+  font-weight: 600 !important;
+}
+
+.fw-700 {
+  font-weight: 700 !important;
+}
+
+.fw-800 {
+  font-weight: 800 !important;
+}
+
+.MuiLink-root {
+  color: #9644F3;
+}

@@ -1,0 +1,65 @@
+const style = () => ({
+  "&.sidebarContainer": {
+    background: "#ffffff",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "end",
+  },
+  ".sidebar": {
+    background: "#f7f7f7",
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderBottom: "1px solid #dcdcdc",
+    padding: "8.5px 30px",
+  },
+  ".Search": {
+    position: "relative",
+    borderRadius: "20px",
+    backgroundColor: "#ffffff",
+    width: "50%",
+    border: "1px solid #D5D5D5",
+    paddingRight: "30px",
+  },
+  ".searchInput": {
+    color: "inherit",
+    height: "30px",
+    "& .MuiInputBase-input": {
+      padding: "10px",
+      paddingRight: `30px)`,
+    },
+  },
+  ".SearchIconWrapper": {
+    right: 0,
+    top: 0,
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingRight: "5px",
+    "& svg": {
+      fill: "#777C96",
+    },
+  },
+  "&.historyItem": {
+    background: "#ffffff",
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    margin: "10px 0px",
+    borderRadius: "4px",
+    padding: "16px 8px 16px 16px",
+    border: "1px solid #e4e5ea",
+  },
+  ".historyMore": {
+    width: 32,
+    height: 32,
+  },
+});
+export default style;

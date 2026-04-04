@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 25 20">
+  <g id="collapse" transform="translate(-1 -4)">
+    <path id="Path_9" data-name="Path 9" d="M15.833,4a.833.833,0,0,1,.833.833V23.167a.833.833,0,1,1-1.667,0V4.833A.833.833,0,0,1,15.833,4Z" transform="translate(-2.333)" fill="#5c5c5c" fill-rule="evenodd"/>
+    <path id="Path_10" data-name="Path 10" d="M1,15.833A.833.833,0,0,1,1.833,15h8.333a.833.833,0,1,1,0,1.667H1.833A.833.833,0,0,1,1,15.833Z" transform="translate(0 -1.833)" fill="#5c5c5c" fill-rule="evenodd"/>
+    <path id="Path_11" data-name="Path 11" d="M7.244,11.244a.833.833,0,0,1,1.179,0l3.333,3.333a.833.833,0,0,1,0,1.179L8.423,19.089a.833.833,0,0,1-1.179-1.178l2.744-2.744L7.244,12.423A.833.833,0,0,1,7.244,11.244Z" transform="translate(-1 -1.167)" fill="#5c5c5c" fill-rule="evenodd"/>
+    <path id="Path_12" data-name="Path 12" d="M19,15.833A.833.833,0,0,1,19.833,15h8.333a.833.833,0,1,1,0,1.667H19.833A.833.833,0,0,1,19,15.833Z" transform="translate(-3 -1.833)" fill="#5c5c5c" fill-rule="evenodd"/>
+    <path id="Path_13" data-name="Path 13" d="M23.756,11.244a.833.833,0,0,1,0,1.179l-2.744,2.744,2.744,2.744a.833.833,0,1,1-1.178,1.178l-3.333-3.333a.833.833,0,0,1,0-1.179l3.333-3.333A.833.833,0,0,1,23.756,11.244Z" transform="translate(-3 -1.167)" fill="#5c5c5c" fill-rule="evenodd"/>
+  </g>
+</svg>

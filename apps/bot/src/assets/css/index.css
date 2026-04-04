@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  /* font-family: 'Exo', sans-serif; */
+}
+
+* {
+  /* -webkit-font-smoothing: antialiased; */
+  /* -moz-osx-font-smoothing: grayscale; */
+}
+
+/* @import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap'); */
+
+
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f100;
+  border-radius: 6px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #EAEBED;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #EAEBED;
+}
+
+/* flex */
+.dflex {
+  display: flex !important;
+}
+
+.aCenter {
+  align-items: center !important;
+}

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="105" height="105" viewBox="0 0 105 105">
+  <defs>
+    <filter id="Rectangle_1" x="0" y="0" width="105" height="105" filterUnits="userSpaceOnUse">
+      <feOffset dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur"/>
+      <feFlood flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1" data-name="Group 1" transform="translate(-145.5 -155.5)">
+    <g transform="matrix(1, 0, 0, 1, 145.5, 155.5)" filter="url(#Rectangle_1)">
+      <path id="Rectangle_1-2" data-name="Rectangle 1" d="M30,0h0A30,30,0,0,1,60,30V54a6,6,0,0,1-6,6H30A30,30,0,0,1,0,30v0A30,30,0,0,1,30,0Z" transform="translate(22.5 12.5)" fill="#238de9"/>
+    </g>
+    <g id="Group_4" data-name="Group 4" transform="translate(3.387 3.034)">
+      <rect id="Rectangle_2" data-name="Rectangle 2" width="26" height="23" rx="4" transform="translate(182.613 185.966)" fill="#f7fbff"/>
+      <g id="robot" transform="translate(177.434 176.68)">
+        <path id="Path_1" data-name="Path 1" d="M19.545,24.272a2.272,2.272,0,1,0-2.272,2.272A2.275,2.275,0,0,0,19.545,24.272Zm-2.272.757a.757.757,0,1,1,.757-.757A.758.758,0,0,1,17.272,25.03Z" transform="translate(-3.638 -6.85)" fill="#238de9"/>
+        <path id="Path_2" data-name="Path 2" d="M29.272,22a2.272,2.272,0,1,0,2.272,2.272A2.275,2.275,0,0,0,29.272,22Zm0,3.03a.757.757,0,1,1,.757-.757A.758.758,0,0,1,29.272,25.03Z" transform="translate(-6.548 -6.85)" fill="#238de9"/>
+        <path id="Path_3" data-name="Path 3" d="M25.986,33.883a7.614,7.614,0,0,1-6.883,0,.758.758,0,1,0-.692,1.348,9.1,9.1,0,0,0,8.267,0,.758.758,0,1,0-.692-1.348Z" transform="translate(-4.365 -9.711)" fill="#238de9"/>
+        <path id="Path_4" data-name="Path 4" d="M34.087,17.15H31.815V14.877a3.792,3.792,0,0,0-3.787-3.787h-9.09V7.952a3.03,3.03,0,1,0-1.515,0V11.09H8.332a3.792,3.792,0,0,0-3.787,3.787V17.15H2.272A2.275,2.275,0,0,0,0,19.422V26.24a2.275,2.275,0,0,0,2.272,2.272H4.545v2.272a3.792,3.792,0,0,0,3.787,3.787H28.027a3.792,3.792,0,0,0,3.787-3.787V28.512h2.272A2.275,2.275,0,0,0,36.36,26.24V19.422A2.275,2.275,0,0,0,34.087,17.15ZM16.665,5.03A1.515,1.515,0,1,1,18.18,6.545,1.517,1.517,0,0,1,16.665,5.03ZM2.272,27a.758.758,0,0,1-.757-.757V19.422a.759.759,0,0,1,.757-.757H4.545V27ZM30.3,30.785a2.275,2.275,0,0,1-2.272,2.272H8.332A2.275,2.275,0,0,1,6.06,30.785V14.877A2.275,2.275,0,0,1,8.332,12.6H28.027A2.275,2.275,0,0,1,30.3,14.877Zm4.545-4.545a.758.758,0,0,1-.757.757H31.815V18.665h2.272a.759.759,0,0,1,.757.757Z" transform="translate(0 -2)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>
