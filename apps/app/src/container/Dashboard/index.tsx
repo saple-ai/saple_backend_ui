@@ -14,11 +14,8 @@ import {
   Paper,
   IconButton,
 } from '@mui/material';
-import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
-import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
-import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
+import { RobotIcon, BriefcaseIcon, HeartbeatIcon, ChatCircleDotsIcon } from '@phosphor-icons/react';
 import API from '../../utils/api';
 import { DashboardProps, ActiveMessage, Bot, Tenant } from '../../utils/types';
 import Chart from './chart/index';
@@ -144,28 +141,28 @@ function Dashboard(_props: DashboardProps) {
           {
             label: 'Total Tenants',
             value: tenant.length,
-            icon: <GroupOutlinedIcon sx={{ fontSize: 18, color: '#7c3aed' }} />,
-            iconBg: '#ede9fe',
+            icon: <BriefcaseIcon size={22} weight="regular" />,
+            color: '#6B7280', // Consistent gray color
           },
         ]
       : []),
     {
       label: 'Total Bots',
       value: bots.length,
-      icon: <SmartToyOutlinedIcon sx={{ fontSize: 18, color: '#2563eb' }} />,
-      iconBg: '#dbeafe',
+      icon: <RobotIcon size={22} weight="regular" />,
+      color: '#6B7280', // Consistent gray color
     },
     {
       label: 'Active Bots',
       value: countNonRepeatedBotsTotal(activeBot),
-      icon: <BoltOutlinedIcon sx={{ fontSize: 18, color: '#059669' }} />,
-      iconBg: '#d1fae5',
+      icon: <HeartbeatIcon size={22} weight="regular" />,
+      color: '#6B7280', // Consistent gray color
     },
     {
       label: 'Active Sessions',
       value: countNonRepeatedUUIDTotal(activeSection),
-      icon: <ChatBubbleOutlineIcon sx={{ fontSize: 18, color: '#d97706' }} />,
-      iconBg: '#fef3c7',
+      icon: <ChatCircleDotsIcon size={22} weight="regular" />,
+      color: '#6B7280', // Consistent gray color
     },
   ];
 
@@ -202,20 +199,17 @@ function Dashboard(_props: DashboardProps) {
             >
               <CardContent sx={{ p: '20px !important' }}>
                 <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-                  <Box
-                    sx={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: '10px',
-                      background: card.iconBg,
-                      display: 'flex',
+                  <span
+                    style={{
+                      display:    'flex',
                       alignItems: 'center',
-                      justifyContent: 'center',
                       flexShrink: 0,
+                      marginTop:  '2px',
+                      color:      card.color,
                     }}
                   >
                     {card.icon}
-                  </Box>
+                  </span>
                   <Box>
                     <Typography
                       variant="body2"

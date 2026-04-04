@@ -1,31 +1,38 @@
 import { TypographyOptions } from "@mui/material/styles/createTypography";
 
 const typography: TypographyOptions = {
+	fontFamily: "'Montserrat', sans-serif",
 	h1: {
+
 		fontSize: 24,
 		fontWeight: 700,
 		textTransform: 'unset',
 	},
 	h2: {
+
 		fontSize: 22,
 		fontWeight: 700,
 		textTransform: 'unset',
 	},
 	h3: {
+
 		fontSize: 20,
 		fontWeight: 500,
 		textTransform: 'unset',
 	},
 	h4: {
+
 		fontSize: 18,
 		fontWeight: 700,
 		textTransform: 'unset',
 	},
 	h5: {
+
 		fontSize: 16,
 		fontWeight: 500,
 	},
 	h6: {
+
 		fontSize: 15,
 		fontWeight: 400,
 	},
@@ -56,7 +63,7 @@ const typography: TypographyOptions = {
 		paddingBottom: 5
 	},
 	overline: {
-		fontFamily: 'Public Sans, sans-serif',
+		fontFamily: "'Montserrat', sans-serif",
 		fontSize: 14,
 		fontWeight: 500,
 		textTransform: 'uppercase'

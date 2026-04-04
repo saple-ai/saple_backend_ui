@@ -10,7 +10,7 @@ interface PrivateLayoutComponentProps {
 
 export function PrivateLayout({ component: Component, ...props }: PrivateLayoutComponentProps) {
     return (
-        <Box sx={{ display: 'flex', height: '100vh', overflow: 'hidden', background: '#f8fafc', position: 'relative' }}>
+        <Box sx={{ display: 'flex', height: '100vh', overflow: 'hidden', background: '#ACE1AF', position: 'relative' }}>
             {/* Sidebar floats as an absolute overlay on the left edge */}
             <Box sx={{ position: 'absolute', left: 0, top: 0, height: '100%', zIndex: 200 }}>
                 <Sidebar />

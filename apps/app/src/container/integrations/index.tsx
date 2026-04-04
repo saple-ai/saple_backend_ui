@@ -33,6 +33,9 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CodeIcon from '@mui/icons-material/Code';
+import EmailIcon from '@mui/icons-material/Email';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import API from '../../utils/api';
 
 interface IntegrationDef {
@@ -40,6 +43,8 @@ interface IntegrationDef {
     name: string;
     description: string;
     icon: string;
+    logoSlug?: string;
+    brandColor?: string;
     available: boolean;
     configFields?: { key: string; label: string; type: string }[];
     isCustomApi?: boolean;
@@ -69,6 +74,8 @@ const INTEGRATION_DEFS: IntegrationDef[] = [
         name: 'Slack',
         description: 'Manage your Slack conversations and deploy your agent to Slack channels.',
         icon: '💬',
+        logoSlug: 'slack',
+        brandColor: '#4A154B',
         available: true,
         configFields: [
             { key: 'webhook_url', label: 'Webhook URL', type: 'text' },
@@ -80,6 +87,8 @@ const INTEGRATION_DEFS: IntegrationDef[] = [
         name: 'Shopify',
         description: 'Connect your Shopify store so your agent can answer product and order questions.',
         icon: '🛍️',
+        logoSlug: 'shopify',
+        brandColor: '#96BF48',
         available: true,
         configFields: [
             { key: 'store_url', label: 'Store URL', type: 'text' },
@@ -91,6 +100,8 @@ const INTEGRATION_DEFS: IntegrationDef[] = [
         name: 'Calendly',
         description: 'Let your agent schedule meetings by embedding your Calendly link.',
         icon: '📅',
+        logoSlug: 'calendly',
+        brandColor: '#0069FF',
         available: true,
         configFields: [
             { key: 'calendly_url', label: 'Calendly URL', type: 'text' },
@@ -101,6 +112,8 @@ const INTEGRATION_DEFS: IntegrationDef[] = [
         name: 'Stripe',
         description: 'Manage payments, billing, and automate financial operations via your agent.',
         icon: '💳',
+        logoSlug: 'stripe',
+        brandColor: '#635BFF',
         available: true,
         configFields: [
             { key: 'publishable_key', label: 'Publishable Key', type: 'text' },
@@ -112,6 +125,8 @@ const INTEGRATION_DEFS: IntegrationDef[] = [
         name: 'HubSpot',
         description: 'Sync contacts, track deals, and let your agent create CRM records directly from conversations.',
         icon: '🟠',
+        logoSlug: 'hubspot',
+        brandColor: '#FF7A59',
         available: true,
         configFields: [
             { key: 'api_key', label: 'Private App Token (starts with pat-)', type: 'password' },
@@ -122,6 +137,8 @@ const INTEGRATION_DEFS: IntegrationDef[] = [
         name: 'Zendesk',
         description: 'Connect Zendesk so your agent can escalate tickets to humans, draft suggestions or auto-reply.',
         icon: '🎫',
+        logoSlug: 'zendesk',
+        brandColor: '#03363D',
         available: true,
         configFields: [
             { key: 'subdomain', label: 'Zendesk Subdomain', type: 'text' },
@@ -134,6 +151,7 @@ const INTEGRATION_DEFS: IntegrationDef[] = [
         name: 'Custom API',
         description: "Connect your own REST APIs so the agent can query your internal systems — inventory, orders, users, and more.",
         icon: '🔌',
+        brandColor: '#238DE9',
         available: true,
         isCustomApi: true,
     },
@@ -142,6 +160,7 @@ const INTEGRATION_DEFS: IntegrationDef[] = [
         name: 'Sunshine',
         description: 'Connect Sunshine to enable live chat handoff inside Zendesk.',
         icon: '☀️',
+        brandColor: '#FFB400',
         available: false,
         configFields: [],
     },
@@ -150,6 +169,8 @@ const INTEGRATION_DEFS: IntegrationDef[] = [
         name: 'WhatsApp',
         description: 'Deploy your agent on WhatsApp to reach customers on their preferred channel.',
         icon: '📱',
+        logoSlug: 'whatsapp',
+        brandColor: '#25D366',
         available: false,
         configFields: [],
     },
@@ -158,6 +179,7 @@ const INTEGRATION_DEFS: IntegrationDef[] = [
         name: 'Email (SMTP)',
         description: 'Send escalation alerts to your support team by email when the agent hands off a conversation to a human.',
         icon: '✉️',
+        brandColor: '#EA4335',
         available: true,
         configFields: [
             { key: 'host', label: 'SMTP Host', type: 'text' },
@@ -172,6 +194,60 @@ const INTEGRATION_DEFS: IntegrationDef[] = [
         ],
     },
 ];
+
+// ── Integration Icon ──────────────────────────────────────────────────────────
+
+const IntegrationIcon: React.FC<{ def: IntegrationDef }> = ({ def }) => {
+    const bg = def.brandColor || '#6B7280';
+
+    if (def.logoSlug) {
+        return (
+            <Box sx={{
+                width: 52, height: 52, borderRadius: 2,
+                bgcolor: bg,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexShrink: 0,
+            }}>
+                <img
+                    src={`https://cdn.simpleicons.org/${def.logoSlug}`}
+                    width={28} height={28}
+                    alt={def.name}
+                    style={{ display: 'block', filter: 'brightness(0) invert(1)' }}
+                />
+            </Box>
+        );
+    }
+
+    if (def.id === 'custom_api') {
+        return (
+            <Box sx={{ width: 52, height: 52, borderRadius: 2, bgcolor: bg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <CodeIcon sx={{ color: '#fff', fontSize: 28 }} />
+            </Box>
+        );
+    }
+
+    if (def.id === 'smtp') {
+        return (
+            <Box sx={{ width: 52, height: 52, borderRadius: 2, bgcolor: bg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <EmailIcon sx={{ color: '#fff', fontSize: 28 }} />
+            </Box>
+        );
+    }
+
+    if (def.id === 'sunshine') {
+        return (
+            <Box sx={{ width: 52, height: 52, borderRadius: 2, bgcolor: bg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <WbSunnyIcon sx={{ color: '#fff', fontSize: 28 }} />
+            </Box>
+        );
+    }
+
+    return (
+        <Box sx={{ width: 52, height: 52, borderRadius: 2, bgcolor: bg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: 26 }}>
+            {def.icon}
+        </Box>
+    );
+};
 
 // ── Custom API Dialog ─────────────────────────────────────────────────────────
 
@@ -637,72 +713,93 @@ const Integrations: React.FC = () => {
 
     return (
         <Box sx={{ p: 3 }}>
-            <Typography variant="h5" fontWeight={700} gutterBottom>
+            <Typography variant="h5" fontWeight={700} gutterBottom sx={{ color: '#0f172a' }}>
                 Integrations
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 4, fontSize: '0.875rem' }}>
                 Connect your Agent to external services to use integration-specific actions.
             </Typography>
 
+            <Box sx={{ mx: -0.5 }}>
             <Grid container spacing={3}>
                 {INTEGRATION_DEFS.map((def) => {
                     const connected = !!getBackend(def.id);
                     return (
-                        <Grid item xs={12} sm={6} md={4} key={def.id}>
+                        <Grid item xs={12} sm={6} md={4} key={def.id} sx={{ display: 'flex' }}>
                             <Card
                                 variant="outlined"
                                 sx={{
-                                    height: '100%',
+                                    width: '100%',
+                                    minHeight: 220,
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    opacity: def.available ? 1 : 0.6,
-                                    transition: 'box-shadow 0.2s',
-                                    '&:hover': def.available ? { boxShadow: 3 } : {},
+                                    opacity: def.available ? 1 : 0.55,
+                                    borderRadius: 3,
+                                    border: '1px solid',
+                                    borderColor: connected ? 'success.light' : '#E4E5EA',
+                                    boxShadow: 'none',
+                                    transition: 'box-shadow 0.2s, border-color 0.2s',
+                                    '&:hover': def.available ? {
+                                        boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                                        borderColor: def.brandColor || '#1e293b',
+                                    } : {},
+                                    bgcolor: '#fff',
                                 }}
                             >
-                                <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                                        <Box
-                                            sx={{
-                                                width: 48, height: 48, borderRadius: 2,
-                                                border: '1px solid', borderColor: 'divider',
-                                                display: 'flex', alignItems: 'center',
-                                                justifyContent: 'center', fontSize: 24,
-                                                bgcolor: 'background.paper',
-                                            }}
-                                        >
-                                            {def.icon}
-                                        </Box>
-                                        <Box>
-                                            <Typography variant="subtitle1" fontWeight={600}>
-                                                {def.name}
-                                            </Typography>
-                                            {connected && (
-                                                <Chip
-                                                    icon={<CheckCircleIcon />}
-                                                    label="Connected"
-                                                    size="small"
-                                                    color="success"
-                                                    variant="outlined"
-                                                />
-                                            )}
-                                        </Box>
+                                <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', p: 3, pb: '24px !important', gap: 0 }}>
+                                    {/* Header row: icon + status badge */}
+                                    <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', mb: 2 }}>
+                                        <IntegrationIcon def={def} />
+                                        {!def.available && (
+                                            <Chip label="Coming Soon" size="small" sx={{ bgcolor: '#F3F4F6', color: '#6B7280', fontWeight: 500, fontSize: '0.7rem' }} />
+                                        )}
+                                        {connected && (
+                                            <Chip
+                                                icon={<CheckCircleIcon sx={{ fontSize: '14px !important' }} />}
+                                                label="Connected"
+                                                size="small"
+                                                color="success"
+                                                variant="outlined"
+                                                sx={{ fontWeight: 500, fontSize: '0.7rem' }}
+                                            />
+                                        )}
                                     </Box>
 
-                                    <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1 }}>
+                                    {/* Name */}
+                                    <Typography variant="subtitle1" fontWeight={700} sx={{ mb: 0.5, color: '#0f172a', fontSize: '0.9375rem' }}>
+                                        {def.name}
+                                    </Typography>
+
+                                    {/* Description */}
+                                    <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1, mb: 2.5, lineHeight: 1.6, fontSize: '0.8125rem' }}>
                                         {def.description}
                                     </Typography>
 
+                                    {/* Action button */}
                                     <Button
-                                        variant="outlined"
-                                        color={connected && !def.isCustomApi ? 'primary' : undefined}
-                                        fullWidth size="small"
+                                        variant={connected ? 'outlined' : 'contained'}
+                                        fullWidth
+                                        size="small"
                                         disabled={!def.available || loading}
                                         onClick={() => handleOpen(def)}
+                                        sx={{
+                                            mt: 'auto',
+                                            borderRadius: 2,
+                                            fontWeight: 600,
+                                            fontSize: '0.8125rem',
+                                            py: 0.9,
+                                            ...(connected ? {
+                                                borderColor: '#E4E5EA',
+                                                color: '#374151',
+                                                '&:hover': { borderColor: '#9CA3AF', bgcolor: '#F9FAFB' },
+                                            } : !def.available ? {} : {
+                                                bgcolor: '#1e293b',
+                                                '&:hover': { bgcolor: '#0f172a' },
+                                                boxShadow: 'none',
+                                            }),
+                                        }}
                                     >
-                                        {!def.available
-                                            ? 'Coming Soon'
-                                            : connected ? 'Manage' : 'Connect'}
+                                        {!def.available ? 'Coming Soon' : connected ? 'Manage' : 'Connect'}
                                     </Button>
                                 </CardContent>
                             </Card>
@@ -710,6 +807,7 @@ const Integrations: React.FC = () => {
                     );
                 })}
             </Grid>
+            </Box>
 
             {/* Standard config Dialog */}
             <Dialog open={!!selected} onClose={handleClose} maxWidth="sm" fullWidth>

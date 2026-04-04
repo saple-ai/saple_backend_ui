@@ -60,10 +60,10 @@ const style = () => ({
             '&.Mui-selected': {
                 background: '#fff',
                 borderBottom: `1px solid transparent`,
-                color: '#9644F3',
+                color: '#000000',
                 fontWeight: '600',
                 '.MuiTypography-root': {
-                    color: '#9644F3',
+                    color: '#000000',
                     fontWeight: '600',
                 },
             }
