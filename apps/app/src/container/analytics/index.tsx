@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
+import EmptyState from '../../components/EmptyState';
 import * as d3 from 'd3';
 import {
   Grid, Typography, Paper, Box, MenuItem, Select,
@@ -433,9 +434,7 @@ function Analytics({ className }: { className?: string }) {
                     height={240}
                   />
                 ) : (
-                  <Box py={4} textAlign="center">
-                    <Typography color="text.secondary">No data yet</Typography>
-                  </Box>
+                  <EmptyState title="No data yet" description="Conversation data will appear here once your bots are active." />
                 )}
               </Paper>
             </Grid>
@@ -497,8 +496,8 @@ function Analytics({ className }: { className?: string }) {
                 <TableBody>
                   {data.recent_escalations.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={7} align="center">
-                        <Typography color="text.secondary" py={2}>No escalations in this period</Typography>
+                      <TableCell colSpan={7} align="center" sx={{ border: 0 }}>
+                        <EmptyState title="No escalations" description="No escalations were recorded in this period." />
                       </TableCell>
                     </TableRow>
                   ) : data.recent_escalations.map((row, i) => {

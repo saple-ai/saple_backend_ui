@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import EmptyState from "../../components/EmptyState";
 import { useParams } from "react-router-dom";
 import {
   IconButton,
@@ -1217,7 +1218,7 @@ function User(props: UserProps) {
               <IconButton
                 onClick={() => setShowBox(true)}
                 color="primary"
-                sx={{ background: "#004D6C", padding: "8px" }}
+                sx={{ background: "#0f172a", padding: "8px", '&:hover': { background: "#1e293b" } }}
               >
                 <BrowserUpdatedIcon sx={{ fill: "#fff" }} />
               </IconButton>
@@ -1234,7 +1235,7 @@ function User(props: UserProps) {
               />
               <IconButton
                 color="primary"
-                sx={{ background: "#004D6C", width: '100px', height: '40px', borderRadius: '20px', fontSize: '16px', color: 'white', marginLeft: "5px" }}
+                sx={{ background: "#0f172a", width: '100px', height: '40px', borderRadius: '20px', fontSize: '16px', color: 'white', marginLeft: "5px", '&:hover': { background: "#1e293b" } }}
                 onClick={handleAdd}
               >
                 <AddIcon sx={{ fill: "#fff" }} />
@@ -1320,10 +1321,7 @@ function User(props: UserProps) {
         <CustomTabPanel value={value} index={1}>
           <Box sx={{ p: 2 }}>
             {(id ? filteredUsers : users).length === 0 ? (
-              <Box sx={{ textAlign: 'center', py: 8, color: 'text.secondary' }}>
-                <ModelTrainingIcon sx={{ fontSize: 56, opacity: 0.2, mb: 1 }} />
-                <Typography variant="body1">No bots yet. Create one to get started.</Typography>
-              </Box>
+              <EmptyState title="No agents yet" description="Create your first agent to start automating conversations." />
             ) : (
               <Grid container spacing={2}>
                 {(id ? filteredUsers : users)

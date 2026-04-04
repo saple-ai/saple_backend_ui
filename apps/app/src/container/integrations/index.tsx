@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import EmptyState from '../../components/EmptyState';
 import {
     Box,
     Grid,
@@ -493,11 +494,7 @@ const CustomApiDialog: React.FC<CustomApiDialogProps> = ({
                             {loadingEps ? (
                                 <Box sx={{ textAlign: 'center', py: 3 }}><CircularProgress size={24} /></Box>
                             ) : endpoints.length === 0 ? (
-                                <Box sx={{ textAlign: 'center', py: 4 }}>
-                                    <Typography variant="body2" color="text.secondary">
-                                        No endpoints registered yet. Click "Add Endpoint" to define your first API call.
-                                    </Typography>
-                                </Box>
+                                <EmptyState title="No endpoints yet" description='Click "Add Endpoint" to define your first API call.' />
                             ) : (
                                 <Table size="small">
                                     <TableHead>

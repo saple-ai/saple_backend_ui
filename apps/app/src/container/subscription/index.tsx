@@ -169,9 +169,9 @@ export default function SubscriptionPage() {
                     size="small"
                 >
                     <ToggleButton value="monthly">Monthly</ToggleButton>
-                    <ToggleButton value="yearly">
+                    <ToggleButton value="yearly" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         Yearly
-                        <Chip label="Save 20%" size="small" color="success" sx={{ ml: 1 }} />
+                        <Chip label="Save 20%" size="small" color="success" />
                     </ToggleButton>
                 </ToggleButtonGroup>
             </Box>

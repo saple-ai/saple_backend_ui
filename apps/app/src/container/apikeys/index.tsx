@@ -9,6 +9,7 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import API from '../../utils/api';
+import EmptyState from '../../components/EmptyState';
 
 interface ApiKey {
     id: number;
@@ -149,8 +150,8 @@ export default function ApiKeysPage() {
                             </TableRow>
                         ) : keys.length === 0 ? (
                             <TableRow>
-                                <TableCell colSpan={7} align="center" sx={{ py: 4, color: 'text.secondary' }}>
-                                    No API keys yet. Create one to get started.
+                                <TableCell colSpan={7} align="center" sx={{ border: 0 }}>
+                                    <EmptyState title="No API keys yet" description="Create your first API key to start integrating with the REST API." />
                                 </TableCell>
                             </TableRow>
                         ) : (

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import EmptyState from '../../components/EmptyState';
 import { Box, Typography, Chip, Divider, Button, Avatar } from '@mui/material';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -208,36 +209,10 @@ export default function Notifications() {
 
         {/* Notification list */}
         {filteredItems.length === 0 ? (
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              py: 8,
-              gap: 1.5,
-            }}
-          >
-            <Box
-              sx={{
-                width: 56,
-                height: 56,
-                borderRadius: '16px',
-                background: '#f1f5f9',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <NotificationsNoneOutlinedIcon sx={{ fontSize: 28, color: '#94a3b8' }} />
-            </Box>
-            <Typography sx={{ color: '#64748b', fontSize: '0.9375rem', fontWeight: 500 }}>
-              No notifications here
-            </Typography>
-            <Typography sx={{ color: '#94a3b8', fontSize: '0.8125rem' }}>
-              {filter === 'unread' ? 'You are all caught up!' : 'Nothing to show for this filter.'}
-            </Typography>
-          </Box>
+          <EmptyState
+            title="No notifications here"
+            description={filter === 'unread' ? 'You are all caught up!' : 'Nothing to show for this filter.'}
+          />
         ) : (
           filteredItems.map((item, index) => {
             const config = typeConfig[item.type];

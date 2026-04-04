@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
+import EmptyState from '../../components/EmptyState';
 import {
   Grid, Typography, Paper, Box, MenuItem, Select,
   FormControl, InputLabel, Table, TableBody, TableCell,
@@ -342,8 +343,8 @@ function Conversations({ className }: { className?: string }) {
                 </TableRow>
               ) : sessions.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={7} align="center" sx={{ py: 6 }}>
-                    <Typography color="text.secondary">No conversations found</Typography>
+                  <TableCell colSpan={7} align="center" sx={{ border: 0 }}>
+                    <EmptyState title="No conversations found" description="Conversations will appear here once users start chatting with your bots." />
                   </TableCell>
                 </TableRow>
               ) : sessions.map((session, i) => {
