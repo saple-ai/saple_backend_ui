@@ -61,7 +61,7 @@ interface ConversationDetail {
 // ── Styled ────────────────────────────────────────────────────────────────────
 
 const StyledTableCell = styled(TableCell)(() => ({
-  [`&.${tableCellClasses.head}`]: { backgroundColor: '#EADAFD', color: '#222' },
+  [`&.${tableCellClasses.head}`]: { backgroundColor: '#f1f5f9', color: '#222' },
 }));
 
 // ── Sentiment badge ───────────────────────────────────────────────────────────
@@ -270,8 +270,8 @@ function Conversations({ className }: { className?: string }) {
 
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
         <Box>
-          <Typography variant="h2">Conversations</Typography>
-          <Typography variant="body2" color="text.secondary" mt={0.5}>
+          <Typography variant="h1">Conversations</Typography>
+          <Typography variant="body2" color="text.secondary" mt={0.5} sx={{ fontSize: '1rem' }}>
             Browse all bot conversations
           </Typography>
         </Box>

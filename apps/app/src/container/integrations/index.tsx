@@ -713,45 +713,41 @@ const Integrations: React.FC = () => {
 
     return (
         <Box sx={{ p: 3 }}>
-            <Typography variant="h5" fontWeight={700} gutterBottom sx={{ color: '#0f172a' }}>
+            <Typography variant="h1" fontWeight={700} gutterBottom sx={{ color: '#0f172a' }}>
                 Integrations
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 4, fontSize: '0.875rem' }}>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 4, fontSize: '1rem' }}>
                 Connect your Agent to external services to use integration-specific actions.
             </Typography>
 
-            <Box sx={{ mx: -0.5 }}>
             <Grid container spacing={3}>
                 {INTEGRATION_DEFS.map((def) => {
                     const connected = !!getBackend(def.id);
                     return (
                         <Grid item xs={12} sm={6} md={4} key={def.id} sx={{ display: 'flex' }}>
                             <Card
-                                variant="outlined"
                                 sx={{
                                     width: '100%',
                                     minHeight: 220,
                                     display: 'flex',
                                     flexDirection: 'column',
                                     opacity: def.available ? 1 : 0.55,
-                                    borderRadius: 3,
-                                    border: '1px solid',
-                                    borderColor: connected ? 'success.light' : '#E4E5EA',
-                                    boxShadow: 'none',
-                                    transition: 'box-shadow 0.2s, border-color 0.2s',
+                                    borderRadius: '16px',
+                                    border: connected ? '1px solid #bbf7d0' : '1px solid rgba(0,0,0,0.04)',
+                                    boxShadow: '0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)',
+                                    transition: 'box-shadow 0.2s',
                                     '&:hover': def.available ? {
-                                        boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-                                        borderColor: def.brandColor || '#1e293b',
+                                        boxShadow: '0 4px 12px rgba(0,0,0,0.10), 0 8px 32px rgba(0,0,0,0.06)',
                                     } : {},
                                     bgcolor: '#fff',
                                 }}
                             >
-                                <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', p: 3, pb: '24px !important', gap: 0 }}>
+                                <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', p: '20px !important', gap: 0 }}>
                                     {/* Header row: icon + status badge */}
                                     <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', mb: 2 }}>
                                         <IntegrationIcon def={def} />
                                         {!def.available && (
-                                            <Chip label="Coming Soon" size="small" sx={{ bgcolor: '#F3F4F6', color: '#6B7280', fontWeight: 500, fontSize: '0.7rem' }} />
+                                            <Chip label="Coming Soon" size="small" sx={{ bgcolor: '#f1f5f9', color: '#64748b', fontWeight: 500, fontSize: '0.6875rem' }} />
                                         )}
                                         {connected && (
                                             <Chip
@@ -760,18 +756,18 @@ const Integrations: React.FC = () => {
                                                 size="small"
                                                 color="success"
                                                 variant="outlined"
-                                                sx={{ fontWeight: 500, fontSize: '0.7rem' }}
+                                                sx={{ fontWeight: 500, fontSize: '0.6875rem' }}
                                             />
                                         )}
                                     </Box>
 
                                     {/* Name */}
-                                    <Typography variant="subtitle1" fontWeight={700} sx={{ mb: 0.5, color: '#0f172a', fontSize: '0.9375rem' }}>
+                                    <Typography sx={{ mb: 0.5, color: '#0f172a', fontSize: '0.9375rem', fontWeight: 600, lineHeight: 1.3 }}>
                                         {def.name}
                                     </Typography>
 
                                     {/* Description */}
-                                    <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1, mb: 2.5, lineHeight: 1.6, fontSize: '0.8125rem' }}>
+                                    <Typography sx={{ flexGrow: 1, mb: 2.5, lineHeight: 1.6, fontSize: '0.8125rem', color: '#64748b' }}>
                                         {def.description}
                                     </Typography>
 
@@ -784,18 +780,19 @@ const Integrations: React.FC = () => {
                                         onClick={() => handleOpen(def)}
                                         sx={{
                                             mt: 'auto',
-                                            borderRadius: 2,
+                                            borderRadius: '8px',
                                             fontWeight: 600,
                                             fontSize: '0.8125rem',
                                             py: 0.9,
+                                            boxShadow: 'none',
                                             ...(connected ? {
-                                                borderColor: '#E4E5EA',
-                                                color: '#374151',
-                                                '&:hover': { borderColor: '#9CA3AF', bgcolor: '#F9FAFB' },
-                                            } : !def.available ? {} : {
-                                                bgcolor: '#1e293b',
-                                                '&:hover': { bgcolor: '#0f172a' },
-                                                boxShadow: 'none',
+                                                borderColor: 'rgba(0,0,0,0.12)',
+                                                color: '#475569',
+                                                '&:hover': { borderColor: 'rgba(0,0,0,0.24)', bgcolor: '#f8fafc', boxShadow: 'none' },
+                                            } : {
+                                                bgcolor: '#334155',
+                                                color: '#fff',
+                                                '&:hover': { bgcolor: '#1e293b', boxShadow: 'none' },
                                             }),
                                         }}
                                     >
@@ -807,7 +804,6 @@ const Integrations: React.FC = () => {
                     );
                 })}
             </Grid>
-            </Box>
 
             {/* Standard config Dialog */}
             <Dialog open={!!selected} onClose={handleClose} maxWidth="sm" fullWidth>

@@ -131,8 +131,8 @@ export default function SubscriptionPage() {
 
     return (
         <Box sx={{ p: 3 }}>
-            <Typography variant="h5" fontWeight={700} gutterBottom>Subscription & Plans</Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+            <Typography variant="h1" fontWeight={700} gutterBottom>Subscription & Plans</Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 3, fontSize: '1rem' }}>
                 Choose a plan that fits your team. All plans include a 14-day free trial.
             </Typography>
 

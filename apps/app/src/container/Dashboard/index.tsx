@@ -174,11 +174,10 @@ function Dashboard(_props: DashboardProps) {
       <Box sx={{ mb: 3 }}>
       
         <Typography
-          variant="h5"
+          variant="h1"
           sx={{
             fontWeight: 700,
             color: '#0f172a',
-            fontSize: '1.375rem',
           }}
         >
           Dashboard

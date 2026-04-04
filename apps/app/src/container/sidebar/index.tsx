@@ -256,7 +256,7 @@ export default function Sidebar(_props: any) {
                         transition: 'color 160ms ease',
                       }}
                     >
-                      <Icon size={19} weight={isActive ? 'fill' : 'regular'} />
+                      <Icon size={collapsed ? 24 : 20} weight={isActive ? 'fill' : 'regular'} />
                     </span>
 
                     {/* Label */}
@@ -264,7 +264,7 @@ export default function Sidebar(_props: any) {
                       <Typography
                         sx={{
                           color:          isActive ? C.labelActive : C.labelIdle,
-                          fontSize:       '0.8125rem',
+                          fontSize:       '0.9375rem',
                           fontWeight:     isActive ? 600 : 400,
                           whiteSpace:     'nowrap',
                           letterSpacing:  '-0.01em',

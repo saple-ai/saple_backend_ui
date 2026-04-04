@@ -115,8 +115,8 @@ export default function ApiKeysPage() {
         <Box sx={{ p: 3 }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
                 <Box>
-                    <Typography variant="h5" fontWeight={700}>API Keys</Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="h1" fontWeight={700}>API Keys</Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ fontSize: '1rem' }}>
                         Manage keys for the public REST API. Keys are shown only once at creation.
                     </Typography>
                 </Box>

@@ -82,23 +82,23 @@ const typeConfig: Record<
 > = {
   escalation: {
     icon: <WarningAmberOutlinedIcon sx={{ fontSize: 18 }} />,
-    color: '#dc2626',
-    bg: '#fee2e2',
+    color: '#78716c',
+    bg: '#f5f5f4',
   },
   success: {
     icon: <CheckCircleOutlineIcon sx={{ fontSize: 18 }} />,
-    color: '#059669',
-    bg: '#d1fae5',
+    color: '#6b7280',
+    bg: '#f3f4f6',
   },
   warning: {
     icon: <WarningAmberOutlinedIcon sx={{ fontSize: 18 }} />,
-    color: '#d97706',
-    bg: '#fef3c7',
+    color: '#71717a',
+    bg: '#f4f4f5',
   },
   info: {
     icon: <InfoOutlinedIcon sx={{ fontSize: 18 }} />,
-    color: '#2563eb',
-    bg: '#dbeafe',
+    color: '#64748b',
+    bg: '#f1f5f9',
   },
 };
 
@@ -137,7 +137,7 @@ export default function Notifications() {
       {/* Page header */}
       <Box sx={{ mb: 3, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          <Typography variant="h5" sx={{ fontWeight: 700, color: '#0f172a', fontSize: '1.375rem' }}>
+          <Typography variant="h1" sx={{ fontWeight: 700, color: '#0f172a' }}>
             Notifications
           </Typography>
           {unreadCount > 0 && (
@@ -252,11 +252,10 @@ export default function Notifications() {
                     px: 2.5,
                     py: 2,
                     cursor: 'pointer',
-                    background: item.read ? 'transparent' : '#f8faff',
-                    borderLeft: item.read ? '3px solid transparent' : '3px solid #6366f1',
+                    background: item.read ? 'transparent' : '#fdf6ee',
                     transition: 'background 0.15s ease',
                     '&:hover': {
-                      background: item.read ? '#fafafa' : '#f0f4ff',
+                      background: item.read ? '#fafafa' : '#faeedd',
                     },
                   }}
                 >
@@ -318,7 +317,7 @@ export default function Notifications() {
                         width: 8,
                         height: 8,
                         borderRadius: '50%',
-                        background: '#6366f1',
+                        background: '#e5a96a',
                         flexShrink: 0,
                         mt: 0.75,
                       }}

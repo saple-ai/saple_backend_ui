@@ -345,7 +345,7 @@ function Analytics({ className }: { className?: string }) {
     <Grid className={className} sx={{ p: 0 }}>
       {/* Header */}
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
-        <Typography variant="h2">Conversation Intelligence</Typography>
+        <Typography variant="h1">Conversation Intelligence</Typography>
         <Box display="flex" gap={2}>
           <FormControl size="small" sx={{ minWidth: 180 }}>
             <InputLabel>Agent</InputLabel>
