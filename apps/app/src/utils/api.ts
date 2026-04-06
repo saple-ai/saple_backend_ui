@@ -88,8 +88,6 @@ function createAxiosInstance(): AxiosInstance {
   return instance;
 }
 
-createAxiosInstance();
-
 const axiosInstance = createAxiosInstance();
 
 const API = {

@@ -10,7 +10,6 @@ import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import Logo from '../../assets/img/saple-logo.jpeg';
 import API from '../../utils/api';
-import axios from 'axios';
 
 const BRAND = {
   gradient: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f2d52 100%)',
@@ -37,12 +36,9 @@ export default function SignIn() {
     setLoading(true);
     try {
       const response = await API.login(username, password);
-      const { access, refresh, role } = response.data;
-      sessionStorage.clear();
-      sessionStorage.setItem('access_token', access);
-      sessionStorage.setItem('refresh_token', refresh);
+      const { role, username: uname } = response.data;
       sessionStorage.setItem('role', role);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${access}`;
+      sessionStorage.setItem('username', uname || username);
       window.location.href = '/dashboard';
     } catch {
       setError('Invalid username or password. Please try again.');
