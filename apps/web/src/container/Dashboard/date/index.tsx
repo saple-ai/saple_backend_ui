@@ -1,6 +1,5 @@
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import { Grid } from '@mui/material';
 
 export default function GroupSizesColors(props:{setlineChartDate:any}) {
   const { setlineChartDate } = props;
@@ -16,11 +15,8 @@ export default function GroupSizesColors(props:{setlineChartDate:any}) {
   ];
 
   return (
-    <Grid container alignItems={"center"} justifyContent="space-between" sx={{ pb: 2 }}>
-      {/* <Typography variant="body1" sx={{ fontSize: '16px', fontWeight: '600' }}>Title</Typography> */}
-      <ButtonGroup size="small" aria-label="Small button group">
-        {buttons}
-      </ButtonGroup>
-    </Grid>
+    <ButtonGroup size="small" aria-label="Small button group">
+      {buttons}
+    </ButtonGroup>
   );
 }

@@ -1,6 +1,7 @@
 import { TypographyOptions } from "@mui/material/styles/createTypography";
 
 const typography: TypographyOptions = {
+	fontFamily: "'Montserrat', sans-serif",
 	h1: {
 		fontSize: 24,
 		fontWeight: 700,
@@ -56,7 +57,7 @@ const typography: TypographyOptions = {
 		paddingBottom: 5
 	},
 	overline: {
-		fontFamily: 'Public Sans, sans-serif',
+		fontFamily: "'Montserrat', sans-serif",
 		fontSize: 14,
 		fontWeight: 500,
 		textTransform: 'uppercase'

@@ -161,10 +161,10 @@ function User(): JSX.Element {
     const pageTitle = role === 'superadmin' ? 'Super Admin' : 'Users';
 
     return (
-        <Box>
+        <Box sx={{ fontFamily: "'Montserrat', sans-serif" }}>
             {/* Header */}
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
-                <Typography variant="h1" sx={{ fontWeight: 700, color: '#0f172a' }}>
+                <Typography variant="h1" sx={{ fontWeight: 700, color: '#0f172a', fontFamily: "'Montserrat', sans-serif" }}>
                     {pageTitle}
                 </Typography>
                 <Button
@@ -172,6 +172,7 @@ function User(): JSX.Element {
                     startIcon={<AddIcon />}
                     onClick={handleAdd}
                     sx={{
+                        fontFamily: "'Montserrat', sans-serif",
                         borderRadius: '10px',
                         background: '#0f172a',
                         textTransform: 'none',

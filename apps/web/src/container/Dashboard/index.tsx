@@ -117,42 +117,72 @@ function Dashboard(_props: DashboardProps) {
     };
   };
 
-  const iconColor = '#6B7280';
-
   const kpiCards = [
     ...(role === 'superadmin'
-      ? [{ label: 'Total Tenants',   value: tenant.length,                        Icon: WorkOutlinedIcon }]
+      ? [
+          {
+            label: 'Total Tenants',
+            value: tenant.length,
+            icon: <WorkOutlinedIcon sx={{ fontSize: 22 }} />,
+            color: '#6B7280',
+          },
+        ]
       : []),
-    { label: 'Total Bots',           value: bots.length,                          Icon: SmartToyOutlinedIcon },
-    { label: 'Active Bots',          value: countNonRepeatedBotsTotal(activeBot),  Icon: FavoriteBorderOutlinedIcon },
-    { label: 'Active Sessions',      value: countNonRepeatedUUIDTotal(activeSection), Icon: ChatBubbleOutlineOutlinedIcon },
+    {
+      label: 'Total Bots',
+      value: bots.length,
+      icon: <SmartToyOutlinedIcon sx={{ fontSize: 22 }} />,
+      color: '#6B7280',
+    },
+    {
+      label: 'Active Bots',
+      value: countNonRepeatedBotsTotal(activeBot),
+      icon: <FavoriteBorderOutlinedIcon sx={{ fontSize: 22 }} />,
+      color: '#6B7280',
+    },
+    {
+      label: 'Active Sessions',
+      value: countNonRepeatedUUIDTotal(activeSection),
+      icon: <ChatBubbleOutlineOutlinedIcon sx={{ fontSize: 22 }} />,
+      color: '#6B7280',
+    },
   ];
 
   const cardShadow = '0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)';
 
   return (
-    <Box>
+    <Box sx={{ fontFamily: "'Montserrat', sans-serif" }}>
       {/* Page header */}
       <Box sx={{ mb: 3 }}>
-        <Typography variant="h1" sx={{ fontWeight: 700, color: '#0f172a' }}>
+        <Typography variant="h1" sx={{ fontWeight: 700, color: '#0f172a', fontFamily: "'Montserrat', sans-serif" }}>
           Dashboard
         </Typography>
       </Box>
 
       {/* KPI cards */}
       <Grid container spacing={2.5} sx={{ mb: 3 }}>
-        {kpiCards.map(({ label, value, Icon }) => (
-          <Grid item xs={12} sm={6} md={role === 'superadmin' ? 3 : 4} key={label}>
+        {kpiCards.map((card) => (
+          <Grid item xs={12} sm={6} md={role === 'superadmin' ? 3 : 4} key={card.label}>
             <Card elevation={0} sx={{ borderRadius: '16px', boxShadow: cardShadow, border: '1px solid rgba(0,0,0,0.04)' }}>
               <CardContent sx={{ p: '20px !important' }}>
                 <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-                  <Icon sx={{ fontSize: 22, flexShrink: 0, mt: '2px', color: iconColor }} />
+                  <span
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      flexShrink: 0,
+                      marginTop: '2px',
+                      color: card.color,
+                    }}
+                  >
+                    {card.icon}
+                  </span>
                   <Box>
                     <Typography variant="body2" sx={{ color: '#64748b', mb: 0.25, fontSize: '0.8125rem' }}>
-                      {label}
+                      {card.label}
                     </Typography>
                     <Typography variant="h4" sx={{ fontWeight: 800, color: '#0f172a', lineHeight: 1.1, fontSize: '1.75rem' }}>
-                      {value}
+                      {card.value}
                     </Typography>
                     <Typography sx={{ fontSize: '0.6875rem', color: '#94a3b8', mt: 0.5 }}>
                       this period
@@ -179,22 +209,58 @@ function Dashboard(_props: DashboardProps) {
                 <Table stickyHeader size="small" aria-label="tenants table">
                   <TableHead>
                     <TableRow>
-                      {['Tenant', 'Bots', 'Active Bots', 'Sessions'].map((header, i) => (
-                        <TableCell
-                          key={header}
-                          align={i === 0 ? 'left' : 'right'}
-                          sx={{ background: '#f1f5f9', color: '#475569', fontWeight: 600, fontSize: '0.75rem', borderBottom: '1px solid #e2e8f0' }}
-                        >
-                          {i === 0 ? (
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                              Tenant
-                              <IconButton size="small" onClick={() => handleSort('name')} sx={{ p: 0.25 }}>
-                                <SwapVertIcon sx={{ fontSize: 14, color: '#94a3b8' }} />
-                              </IconButton>
-                            </Box>
-                          ) : header}
-                        </TableCell>
-                      ))}
+                      <TableCell
+                        sx={{
+                          background: '#f1f5f9',
+                          color: '#475569',
+                          fontWeight: 600,
+                          fontSize: '0.75rem',
+                          borderBottom: '1px solid #e2e8f0',
+                        }}
+                      >
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                          Tenant
+                          <IconButton size="small" onClick={() => handleSort('name')} sx={{ p: 0.25 }}>
+                            <SwapVertIcon sx={{ fontSize: 14, color: '#94a3b8' }} />
+                          </IconButton>
+                        </Box>
+                      </TableCell>
+                      <TableCell
+                        align="right"
+                        sx={{
+                          background: '#f1f5f9',
+                          color: '#475569',
+                          fontWeight: 600,
+                          fontSize: '0.75rem',
+                          borderBottom: '1px solid #e2e8f0',
+                        }}
+                      >
+                        Bots
+                      </TableCell>
+                      <TableCell
+                        align="right"
+                        sx={{
+                          background: '#f1f5f9',
+                          color: '#475569',
+                          fontWeight: 600,
+                          fontSize: '0.75rem',
+                          borderBottom: '1px solid #e2e8f0',
+                        }}
+                      >
+                        Active Bots
+                      </TableCell>
+                      <TableCell
+                        align="right"
+                        sx={{
+                          background: '#f1f5f9',
+                          color: '#475569',
+                          fontWeight: 600,
+                          fontSize: '0.75rem',
+                          borderBottom: '1px solid #e2e8f0',
+                        }}
+                      >
+                        Sessions
+                      </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>

@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios';
 import { TrainingResult } from './types';
 
-const API_URL: string = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api/';
+const API_URL: string = import.meta.env.VITE_API_URL || '';
 const TOKEN_KEY: string = 'token';
 const REFRESH_TOKEN_KEY: string = 'refresh_token';
 
@@ -44,14 +44,8 @@ function createAxiosInstance(): AxiosInstance {
 
   instance.interceptors.request.use(
     (config) => {
-      const requestUrl = String(config.url || '');
-      const isAuthFreeEndpoint =
-        requestUrl.includes('login/') ||
-        requestUrl.includes('register/') ||
-        requestUrl.includes('token/') ||
-        requestUrl.includes('logout/');
       const token = localStorage.getItem(TOKEN_KEY);
-      if (token && !isAuthFreeEndpoint) {
+      if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
       return config;

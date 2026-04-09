@@ -88,9 +88,7 @@ export default function Sidebar() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         sx={{
-          position:      'absolute',
-          left:          0,
-          top:           0,
+          position:      'relative',
           height:        '100%',
           zIndex:        1200,
           display:       'flex',
@@ -99,7 +97,9 @@ export default function Sidebar() {
           minWidth:      collapsed ? COLLAPSED_W : EXPANDED_W,
           transition:    'width 220ms cubic-bezier(0.4,0,0.2,1), min-width 220ms cubic-bezier(0.4,0,0.2,1), box-shadow 220ms ease',
           overflow:      'hidden',
+          boxSizing:     'border-box',
           background:    C.bg,
+          borderRadius:  '16px',
           borderRight:   `1px solid ${C.border}`,
           boxShadow:     hovered ? C.shadowHover : C.shadowIdle,
           py:            2,

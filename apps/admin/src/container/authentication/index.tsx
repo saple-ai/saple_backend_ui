@@ -6,10 +6,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 import API from '../../utils/api';
 import axios from 'axios';
 // import Logo from '../../assets/img/ComplyKey-Logo.png';
-import Logo from '../../assets/img/saple-logo.jpeg'
+import Logo from '../../assets/svg/robologo.svg';
 import { styled } from '@mui/material/styles';
 import style from './style';
 
@@ -26,6 +27,18 @@ interface LoginResponse {
     role: string;
   };
 }
+
+const BRAND = {
+  background:
+    'radial-gradient(780px 300px at 50% -5%, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0) 62%), linear-gradient(180deg, #f5fbf8 0%, #edf7f2 100%)',
+  accent: '#059669',
+  title: '#052e2b',
+  text: '#4b5563',
+  fieldBorder: 'rgba(148, 163, 184, 0.35)',
+  cardBg: 'rgba(255, 255, 255, 0.94)',
+  cardBorder: 'rgba(16, 185, 129, 0.22)',
+  cardShadow: '0 24px 60px rgba(5, 150, 105, 0.14)',
+};
 
 function SignIn(props: SignInProps) {
   const { className } = props;
@@ -60,62 +73,149 @@ function SignIn(props: SignInProps) {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container className={className} component="main" maxWidth="sm">
+      <Container
+        className={className}
+        component="main"
+        maxWidth={false}
+        disableGutters
+        sx={{
+          minHeight: '100vh',
+          maxWidth: '100% !important',
+          display: 'grid',
+          placeItems: 'center',
+          position: 'relative',
+          overflow: 'hidden',
+          px: 2,
+          background: BRAND.background,
+        }}
+      >
         <CssBaseline />
+        <Box
+          sx={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            height: 220,
+            background: 'linear-gradient(to top, rgba(255,255,255,0.92), rgba(255,255,255,0.45), rgba(255,255,255,0))',
+            pointerEvents: 'none',
+          }}
+        />
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 80,
+            right: '15%',
+            width: 220,
+            height: 220,
+            borderRadius: '50%',
+            background: 'rgba(16, 185, 129, 0.12)',
+            filter: 'blur(40px)',
+            pointerEvents: 'none',
+          }}
+        />
         <Box
           className="root"
           sx={{
-            marginTop: 8,
+            width: '100%',
+            maxWidth: 430,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            alignItems: 'stretch',
+            zIndex: 1,
           }}
         >
-          <img className='logo' src={Logo} />
-          {/* <Typography variant="h5" className='fw-700' sx={{ pb: 2, color: '#043927' }}>
-            saple.ai
-          </Typography> */}
-          {/* <Typography variant="h5" className='fw-700' sx={{ pb: 2 }}>
-            LOGIN
-          </Typography> */}
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, width: '100%' }}>
-            <Typography variant="body1" className='fw-700' sx={{ pb: 1 }}>Username</Typography>
+          <Paper
+            elevation={0}
+            sx={{
+              p: { xs: 3, sm: 4 },
+              borderRadius: 4,
+              background: BRAND.cardBg,
+              border: `1px solid ${BRAND.cardBorder}`,
+              boxShadow: BRAND.cardShadow,
+              backdropFilter: 'blur(8px)',
+            }}
+          >
+            <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2.5 }}>
+              <Box component="img" src={Logo} sx={{ height: 56, objectFit: 'contain' }} />
+            </Box>
+            <Typography variant="h5" sx={{ color: BRAND.title, fontWeight: 800, textAlign: 'center', mb: 3 }}>
+              Admin Login
+            </Typography>
+            <Box component="form" onSubmit={handleSubmit} noValidate>
+              <Typography variant="caption" className="fw-700" sx={{ pb: 1, display: 'block', color: BRAND.text, textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+                Username
+              </Typography>
             <TextField
               margin="none"
               required
               fullWidth
               id="username"
               name="username"
-              size='small'
+              size="small"
               autoComplete="username"
               autoFocus
               value={username}
               onChange={handleUsernameChange}
+              sx={{
+                mb: 2.75,
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: 2,
+                  background: '#fff',
+                  '& fieldset': { borderColor: BRAND.fieldBorder },
+                  '&:hover fieldset': { borderColor: BRAND.accent },
+                  '&.Mui-focused fieldset': { borderColor: BRAND.accent },
+                },
+              }}
             />
-            <Typography variant="body1" className='fw-700' sx={{ pb: 1, pt: 2 }}>Password</Typography>
+              <Typography variant="caption" className="fw-700" sx={{ pb: 1, display: 'block', color: BRAND.text, textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+                Password
+              </Typography>
             <TextField
               margin="none"
               required
               fullWidth
-              size='small'
+              size="small"
               name="password"
               type="password"
               id="password"
               autoComplete="current-password"
               value={password}
               onChange={handlePasswordChange}
+              sx={{
+                mb: 3.5,
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: 2,
+                  background: '#fff',
+                  '& fieldset': { borderColor: BRAND.fieldBorder },
+                  '&:hover fieldset': { borderColor: BRAND.accent },
+                  '&.Mui-focused fieldset': { borderColor: BRAND.accent },
+                },
+              }}
             />
-            {error && <Typography variant="body2" color="error">{error}</Typography>}
+              {error && <Typography variant="body2" color="error" sx={{ mb: 1 }}>{error}</Typography>}
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 4, mb: 2 }}
-              className='saveBtn'
+              sx={{
+                mt: 1,
+                height: 46,
+                borderRadius: 2,
+                fontWeight: 700,
+                textTransform: 'none',
+                background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
+                boxShadow: '0 10px 22px rgba(5, 150, 105, 0.28)',
+                '&:hover': {
+                  background: 'linear-gradient(135deg, #047857 0%, #059669 100%)',
+                },
+              }}
+              className="saveBtn"
             >
               Login
             </Button>
-          </Box>
+            </Box>
+          </Paper>
         </Box>
       </Container>
     </ThemeProvider>

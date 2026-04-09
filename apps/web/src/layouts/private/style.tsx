@@ -2,6 +2,9 @@ import { Theme } from '@mui/material/styles';
 
 const style = (_theme: Theme) => ({
     height: '100vh',
+    padding: '16px',
+    boxSizing: 'border-box',
+    background: '#f8fafc',
     alignContent: 'baseline',
     '.wrapper': {
         height: '100%'
@@ -10,16 +13,19 @@ const style = (_theme: Theme) => ({
         position: 'relative',
         overflow: 'visible',
         flexShrink: 0,
+        marginRight: '16px',
     },
     '.mainPanel': {
         padding: '24px',
         flex: '1 1 auto',
-        background: '#f8fafc',
-        borderRadius: 0,
+        background: '#fff',
+        borderRadius: '16px',
+        border: '1px solid rgba(0,0,0,0.06)',
         overflowY: 'auto',
     },
     '.fullcontainer': {
-        background: '#f8fafc'
+        background: '#f8fafc',
+        height: 'calc(100vh - 32px)',
     },
     '.drawericon': {
         position: 'absolute',
