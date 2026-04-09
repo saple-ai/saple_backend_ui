@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { IconButton, Grid, Typography, Breadcrumbs, Link as Links } from '@mui/material';
-import { styled } from '@mui/system';
+import { Box, Typography, Button } from '@mui/material';
 import { Table } from '../../components/index';
-import style from './style';
 import AddUser from './components/addUser';
 import Confirmation from '../confirmationDialog/index';
-import { AddIcon } from '../../assets/svg/index';
+import AddIcon from '@mui/icons-material/Add';
 import API from '../../utils/api';
-
-interface UserProps {
-    className?: string;
-}
 
 interface UserData {
     id: number;
@@ -27,9 +21,7 @@ interface FormData {
     phone: string;
 }
 
-function User(props: UserProps): JSX.Element {
-    const { className } = props;
-
+function User(): JSX.Element {
     const [users, setUsers] = useState<UserData[]>([]);
     const [editMode, setEditMode] = useState<boolean>(false);
     // @ts-ignore
@@ -79,7 +71,7 @@ function User(props: UserProps): JSX.Element {
 
     const handleAdd = (): void => {
         setEditMode(false);
-        handleOpenAddUser();
+        setOpenAddUser(true);
     };
 
     const handleDelete = async (userId: number): Promise<void> => {
@@ -92,41 +84,28 @@ function User(props: UserProps): JSX.Element {
     const handleDeleteConfirmed = async (): Promise<void> => {
         try {
             if (userIdTo === null) return;
-            
             if (role === 'superadmin') {
                 await API.superadmindelete(userIdTo as unknown as string);
-                setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userIdTo));
             } else {
                 await API.usersDelete(userIdTo as unknown as string);
-                setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userIdTo));
             }
+            setUsers((prev) => prev.filter((u) => u.id !== userIdTo));
             setDeleteConfirmationOpen(false);
             setConfirmationOpen(false);
             setSnackbarMessage('User deleted successfully');
             setSnackbarOpen(true);
-            setTimeout(() => {
-                setSnackbarOpen(false);
-            }, 6000);
+            setTimeout(() => setSnackbarOpen(false), 6000);
         } catch (error) {
             console.error('Error deleting user:', error);
             setDeleteConfirmationOpen(false);
             setSnackbarMessage('Error deleting user');
             setSnackbarOpen(true);
-            setTimeout(() => {
-                setSnackbarOpen(false);
-            }, 6000);
+            setTimeout(() => setSnackbarOpen(false), 6000);
         }
     };
 
-    const handleOpenAddUser = (): void => {
-        setOpenAddUser(true);
-    };
-
-    const handleCloseAddUser = (): void => {
-        setOpenAddUser(false);
-    };
-
     const roleStorage = sessionStorage.getItem('role');
+
     useEffect(() => {
         if (editMode && 'username' in userData) {
             setFormData({
@@ -136,114 +115,97 @@ function User(props: UserProps): JSX.Element {
                 phone: (userData as UserData).phone || '',
             });
         } else {
-            setFormData({
-                username: '',
-                password: '',
-                email: '',
-                phone: '',
-            });
+            setFormData({ username: '', password: '', email: '', phone: '' });
         }
     }, [editMode, userData]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+        setFormData({ ...formData, [name]: value });
     };
 
     const handleAddUser = async (): Promise<void> => {
         if (!formData.username || !formData.password || !formData.email || !formData.phone) {
             setSnackbarMessage('All the fields are required');
             setSnackbarOpen(true);
-            setTimeout(() => {
-                setSnackbarOpen(false);
-            }, 6000);
+            setTimeout(() => setSnackbarOpen(false), 6000);
             return;
         }
-        if (editMode && (!('id' in userData))) {
+        if (editMode && !('id' in userData)) {
             console.error('User data is missing or incomplete');
             return;
         }
-
         const apiCall = roleStorage === 'superadmin' ? API.superadminregister : API.userspost;
-
         try {
             if (editMode) {
                 setDeletion(false);
                 setConfirmationOpen(true);
             } else {
                 const response = await apiCall(formData.username, formData.password, formData.email, formData.phone);
-                const newUser = response.data;
-                setUsers(prevUsers => [...prevUsers, newUser]);
-                handleClose();
+                setUsers((prev) => [...prev, response.data]);
+                setOpenAddUser(false);
                 setSnackbarMessage('User added successfully');
                 setSnackbarOpen(true);
-                setTimeout(() => {
-                    setSnackbarOpen(false);
-                }, 6000);
+                setTimeout(() => setSnackbarOpen(false), 6000);
             }
         } catch (error) {
             console.error('Error adding user:', error);
-            if (error && typeof error === 'object' && 'response' in error) {
-                console.error('Error Response:', error.response);
-            }
             setSnackbarMessage('Error adding user');
             setSnackbarOpen(true);
-            setTimeout(() => {
-                setSnackbarOpen(false);
-            }, 6000);
+            setTimeout(() => setSnackbarOpen(false), 6000);
         }
     };
 
-    const handleClose = (): void => {
-        handleCloseAddUser();
-    };
+    const handleSnackbarClose = (): void => setSnackbarOpen(false);
 
-    const handleSnackbarClose = (): void => {
-        setSnackbarOpen(false);
-    };
+    const pageTitle = role === 'superadmin' ? 'Super Admin' : 'Users';
 
     return (
-        <Grid container className={className}>
-            <Grid item xs={12} className='titleContainer'>
-                <Grid container justifyContent="space-between">
-                    <Grid>
-                        <Grid item xs={12} sx={{ pb: 1 }}>
-                            <Breadcrumbs separator="››" aria-label="breadcrumb">
-                                <Links underline="hover" color="blue" href="/dashboard">
-                                    Home
-                                </Links>
-                                <Typography color="text.primary">{role === 'superadmin' ? 'Super Admin' : 'Users'}</Typography>
-                            </Breadcrumbs>
-                        </Grid>
-                        <Grid item xs={12} sx={{ pb: 2 }}>
-                            <Typography variant='h2' style={{ margin: '0px 10px 0px 0px' }}>{role === 'superadmin' ? 'Super Admin' : 'Users'}</Typography>
-                        </Grid>
-                    </Grid>
-                    <Grid className='userSetting'>
-                        <IconButton color='primary' style={{ background: '#004D6C', height: '40px', width: '40px' }} onClick={handleAdd}>
-                            <AddIcon />
-                        </IconButton>
-                        <AddUser
-                            open={openAddUser}
-                            // editMode={editMode}
-                            snackbarOpen={snackbarOpen}
-                            snackbarMessage={snackbarMessage}
-                            formData={formData}
-                            // roleStorage={roleStorage}
-                            handleInputChange={handleInputChange}
-                            handleAddUser={handleAddUser}
-                            handleClose={handleClose}
-                            handleSnackbarClose={handleSnackbarClose}
-                        />
-                    </Grid>
-                </Grid>
-            </Grid>
-            <Grid item xs={12} className='boxContainer'>
+        <Box>
+            {/* Header */}
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
+                <Typography variant="h1" sx={{ fontWeight: 700, color: '#0f172a' }}>
+                    {pageTitle}
+                </Typography>
+                <Button
+                    variant="contained"
+                    startIcon={<AddIcon />}
+                    onClick={handleAdd}
+                    sx={{
+                        borderRadius: '10px',
+                        background: '#0f172a',
+                        textTransform: 'none',
+                        fontWeight: 600,
+                        px: 2,
+                        '&:hover': { background: '#1e293b' },
+                    }}
+                >
+                    Add User
+                </Button>
+                <AddUser
+                    open={openAddUser}
+                    snackbarOpen={snackbarOpen}
+                    snackbarMessage={snackbarMessage}
+                    formData={formData}
+                    handleInputChange={handleInputChange}
+                    handleAddUser={handleAddUser}
+                    handleClose={() => setOpenAddUser(false)}
+                    handleSnackbarClose={handleSnackbarClose}
+                />
+            </Box>
+
+            {/* Table */}
+            <Box
+                sx={{
+                    background: '#fff',
+                    borderRadius: '16px',
+                    border: '1px solid rgba(0,0,0,0.04)',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)',
+                    overflow: 'hidden',
+                }}
+            >
                 <Table
-                    headers={["id", "Users", "Mail id", ""]}
+                    headers={['id', 'Users', 'Mail id', '']}
                     data={users
                         .slice()
                         .sort((a, b) => b.id - a.id)
@@ -252,19 +214,20 @@ function User(props: UserProps): JSX.Element {
                             username: user?.username || '',
                             email: user?.email || '',
                         }))}
-                    actions={["DELETE"]}
+                    actions={['DELETE']}
                     handleDelete={(userId) => handleDelete(userId as number)}
                     searchRows={[0, 1, 2]}
                 />
-            </Grid>
+            </Box>
+
             <Confirmation
                 ConfirmationOpen={ConfirmationOpen}
                 setConfirmationOpen={setConfirmationOpen}
                 handleDeleteConfirmed={handleDeleteConfirmed}
                 deletion={deletion}
             />
-        </Grid>
+        </Box>
     );
 }
 
-export default styled(User)(style);
+export default User;

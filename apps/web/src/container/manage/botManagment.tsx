@@ -1205,36 +1205,18 @@ function User(props: UserProps) {
   }));
 
   return (
-    <Grid container className={className}>
-      <Grid item xs={12} className="titleContainer">
-        <Grid container justifyContent={"space-between"}>
-          <Grid>
-            <Grid item xs={12} sx={{ pb: 1 }}>
-              <Breadcrumbs separator="››" aria-label="breadcrumb">
-                <Links underline="hover" color="blue" href="/dashboard">
-                  Home
-                </Links>
-                <Links underline="hover" color="blue" href="/manage">
-                  Manage
-                </Links>
-                <Typography color="text.primary">{management}</Typography>
-              </Breadcrumbs>
-            </Grid>
-            <Grid item xs={12} sx={{ pb: 2 }}>
-              <Typography variant="h2" sx={{ margin: "0px 10px 0px 0px" }}>
-                Manage
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item className={"userSetting"}>
-            <>
-              <IconButton
-                onClick={() => setShowBox(true)}
-                color="primary"
-                sx={{ background: "#004D6C", padding: "8px" }}
-              >
-                <BrowserUpdatedIcon sx={{ fill: "#fff" }} />
-              </IconButton>
+    <Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
+        <Typography variant="h1" sx={{ fontWeight: 700, color: '#0f172a' }}>
+          Manage
+        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <IconButton
+            onClick={() => setShowBox(true)}
+            sx={{ border: '1px solid rgba(0,0,0,0.12)', borderRadius: '10px', p: 1 }}
+          >
+            <BrowserUpdatedIcon sx={{ color: '#374151' }} />
+          </IconButton>
               <Copy
                 text={`<script>document.addEventListener("DOMContentLoaded",function(){var w = window.innerWidth;var i=document.createElement("iframe");i.src="${APP_URL}/${id ? id : orgid}/";i.style.position="absolute";i.style.bottom="0px";i.style.right="0px";i.style.zIndex="999";i.style.border="none";document.body.appendChild(i);const c=i.contentWindow;window.addEventListener("message",function(e){if(e.data.width&&e.data.height){w>=600?i.width=e.data.width:i.width='400px';i.height=e.data.height;}})});</script>`}
                 showBox={showBox}
@@ -1246,14 +1228,14 @@ function User(props: UserProps) {
                 handleCopy={handleCopy}
                 handleCopyClose={handleCopyClose}
               />
-              <IconButton
-                color="primary"
-                sx={{ background: "#004D6C", width: '100px', height: '40px', borderRadius: '20px', fontSize: '16px', color: 'white', marginLeft: "5px" }}
+              <Button
+                variant="contained"
+                startIcon={<AddIcon />}
                 onClick={handleAdd}
+                sx={{ borderRadius: '10px', background: '#0f172a', textTransform: 'none', fontWeight: 600, px: 2, '&:hover': { background: '#1e293b' } }}
               >
-                <AddIcon sx={{ fill: "#fff" }} />
                 Agent
-              </IconButton>
+              </Button>
               <AddUser
                 open={openAddUser}
                 containerData={containerData}
@@ -1275,11 +1257,9 @@ function User(props: UserProps) {
                 handleAddUser={handleAddUser}
                 handleAddAzureStorage={handleAddAzureStorage}
               />
-            </>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Box sx={{ width: "100%" }} className="customTabs">
+        </Box>
+      </Box>
+      <Box sx={{ width: "100%" }}>
         <Box>
           <Tabs
             value={value}
@@ -2085,8 +2065,8 @@ function User(props: UserProps) {
         onClose={handleSnackbarClose}
         message={snackbarMessage}
       />
-    </Grid>
+    </Box>
   );
 }
 
-export default styled(User)(style);
+export default User;
